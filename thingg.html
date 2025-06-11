@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Търсене на човек по ID или име</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-color: #1e1e1e;
+            --text-color: #f1f1f1;
+            --primary-color: #4CAF50;
+            --danger-color: #f44336;
+            --input-bg: #2a2a2a;
+            --border-color: #333;
+            --highlight-color: #03dac6;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: var(--card-color);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.1);
+        }
+
+        h1, h3 {
+            text-align: center;
+            color: var(--highlight-color);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color);
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        button {
+            width: 30%;
+            padding: 10px;
+            margin-right: 5%;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:nth-child(1) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        button:nth-child(2) {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        button:nth-child(3) {
+            background-color: var(--danger-color);
+            color: white;
+            margin-right: 0;
+        }
+
+        button:hover {
+            filter: brightness(1.2);
+        }
+
+        pre {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 16px;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .error {
+            color: #ff5252;
+            font-weight: bold;
+        }
+
+        .search-history {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #181818;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .search-history ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .search-history li {
+            padding: 6px 0;
+            border-bottom: 1px solid #333;
+            color: #ccc;
+        }
+
+        .search-history li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 480px) {
+            button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Търсене на човек по ID или име</h1>
+
+        <label for="personId">Въведи ID на човек:</label>
+        <input type="number" id="personId" min="1" placeholder="напр. 1" />
+
+        <label for="personName">Или въведи име:</label>
+        <input type="text" id="personName" placeholder="напр. Иван Иванов" />
+
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <button onclick="searchPersonById()">По ID</button>
+            <button onclick="searchPersonByName()">По име</button>
+            <button onclick="clearInput()">Изчисти</button>
+        </div>
+
+        <pre id="result"></pre>
+
+        <div class="search-history">
+            <h3>🕓 История на търсенията:</h3>
+            <ul id="historyList"></ul>
+        </div>
+    </div>
+
+    <script>
+        const people = [
+            { id: 1, name: "Иван Иванов", age: 30, city: "София" },
+            { id: 2, name: "Мария Петрова", age: 25, city: "Пловдив" },
+            { id: 3, name: "Георги Георгиев", age: 40, city: "Варна" },
+            { id: 4, name: "Анна Димитрова", age: 35, city: "Бургас" },
+            { id: 5, name: "Петър Василев", age: 28, city: "Русе" },
+            { id: 6, name: "Елена Николова", age: 22, city: "Стара Загора" },
+            { id: 7, name: "Димитър Христов", age: 45, city: "Плевен" },
+            { id: 8, name: "Виктория Стефанова", age: 29, city: "Шумен" },
+            { id: 9, name: "Росен Костов", age: 50, city: "София" },
+            { id: 10, name: "Николай Петров", age: 33, city: "Велико Търново" }
+        ];
+
+        let searchHistory = [];
+
+        function displayHistory() {
+            const historyList = document.getElementById("historyList");
+            historyList.innerHTML = "";
+            searchHistory.slice().reverse().forEach((search, index) => {
+                const li = document.createElement("li");
+                li.textContent = `#${search.id} - ${search.name}, ${search.city}`;
+                historyList.appendChild(li);
+            });
+        }
+
+        function searchPersonById() {
+            const id = Number(document.getElementById("personId").value);
+            const result = document.getElementById("result");
+
+            if (!id || id < 1) {
+                result.textContent = "⚠️ Моля, въведи валидно ID!";
+                result.classList.add("error");
+                return;
+            }
+
+            const person = people.find(p => p.id === id);
+            if (person) {
+                result.textContent = `🧾 ID: ${person.id}\n👤 Име: ${person.name}\n🎂 Възраст: ${person.age}\n📍 Град: ${person.city}`;
+                result.classList.remove("error");
+                searchHistory.push(person);
+                displayHistory();
+            } else {
+                result.textContent = "❌ Няма човек с това ID.";
+                result.classList.add("error");
+            }
+        }
+
+        function searchPersonByName() {
+            const name = document.getElementById("personName").value.trim().toLowerCase();
+            const result = document.getElementById("result");
+
+            if (!name) {
+                result.textContent = "⚠️ Моля, въведи име!";
+                result.classList.add("error");
+                return;
+            }
+
+            const person = people.find(p => p.name.toLowerCase() === name);
+            if (person) {
+                result.textContent = `🧾 ID: ${person.id}\n👤 Име: ${person.name}\n🎂 Възраст: ${person.age}\n📍 Град: ${person.city}`;
+                result.classList.remove("error");
+                searchHistory.push(person);
+                displayHistory();
+            } else {
+                result.textContent = "❌ Няма човек с това име.";
+                result.classList.add("error");
+            }
+        }
+
+        function clearInput() {
+            document.getElementById("personId").value = '';
+            document.getElementById("personName").value = '';
+            document.getElementById("result").textContent = '';
+        }
+    </script>
+</body>
+</html>
