@@ -1,243 +1,211 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Търсене на човек по ID или име</title>
-    <style>
-        :root {
-            --bg-color: #121212;
-            --card-color: #1e1e1e;
-            --text-color: #f1f1f1;
-            --primary-color: #4CAF50;
-            --danger-color: #f44336;
-            --input-bg: #2a2a2a;
-            --border-color: #333;
-            --highlight-color: #03dac6;
-        }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: var(--card-color);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 255, 170, 0.1);
-        }
-
-        h1, h3 {
-            text-align: center;
-            color: var(--highlight-color);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="number"], input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            font-size: 16px;
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            color: var(--text-color);
-        }
-
-        input::placeholder {
-            color: #bbb;
-        }
-
-        button {
-            width: 30%;
-            padding: 10px;
-            margin-right: 5%;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:nth-child(1) {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        button:nth-child(2) {
-            background-color: #2196F3;
-            color: white;
-        }
-
-        button:nth-child(3) {
-            background-color: var(--danger-color);
-            color: white;
-            margin-right: 0;
-        }
-
-        button:hover {
-            filter: brightness(1.2);
-        }
-
-        pre {
-            background-color: #222;
-            padding: 15px;
-            border-radius: 8px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 16px;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .error {
-            color: #ff5252;
-            font-weight: bold;
-        }
-
-        .search-history {
-            margin-top: 25px;
-            padding: 15px;
-            background-color: #181818;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-        }
-
-        .search-history ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .search-history li {
-            padding: 6px 0;
-            border-bottom: 1px solid #333;
-            color: #ccc;
-        }
-
-        .search-history li:last-child {
-            border-bottom: none;
-        }
-
-        @media (max-width: 480px) {
-            button {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prolog превозни средства с GIF анимации</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 700px;
+      margin: 30px auto;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #004466;
+      text-align: center;
+    }
+    textarea {
+      width: 90%;
+      max-width: 600px;
+      height: 120px;
+      font-family: monospace;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 2px solid #0099ff;
+      background-color: #222;
+      color: #e0e0e0;
+      padding: 10px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px 28px;
+      font-size: 18px;
+      background-color: #0099ff;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #007acc;
+    }
+    #result {
+      margin-top: 25px;
+      font-size: 20px;
+      min-height: 40px;
+      font-weight: 600;
+      color: #00ccff;
+    }
+    .vehicle-container {
+      margin-top: 35px;
+      min-height: 180px;
+      background: #003344;
+      border-radius: 14px;
+      box-shadow: 0 0 15px #006699;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .vehicle-gif {
+      max-width: 250px;
+      border-radius: 14px;
+      box-shadow: 0 0 20px #00ccff;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔍 Търсене на човек по ID или име</h1>
 
-        <label for="personId">Въведи ID на човек:</label>
-        <input type="number" id="personId" min="1" placeholder="напр. 1" />
+  <h1>Prolog превозни средства с GIF анимации</h1>
+  <p>
+    Въведете Prolog заявка, за да научите за превозни средства.<br>
+    Примери:<br>
+    <code>is_car(X).</code><br>
+    <code>is_fast(X).</code><br>
+    <code>is_aircraft(X).</code><br>
+    <code>is_watercraft(X).</code><br>
+    <code>is_land_vehicle(X).</code><br>
+  </p>
 
-        <label for="personName">Или въведи име:</label>
-        <input type="text" id="personName" placeholder="напр. Иван Иванов" />
+  <textarea id="prolog-input">
+% Примерни заявки:
+is_car(X).
+is_fast(X).
+is_aircraft(X).
+is_watercraft(X).
+is_land_vehicle(X).
+  </textarea><br />
+  <button onclick="runProlog()">Изпълни</button>
 
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-            <button onclick="searchPersonById()">По ID</button>
-            <button onclick="searchPersonByName()">По име</button>
-            <button onclick="clearInput()">Изчисти</button>
-        </div>
+  <div id="result"></div>
+  <div class="vehicle-container" id="vehicle-animation"></div>
 
-        <pre id="result"></pre>
+  <script src="https://unpkg.com/tau-prolog"></script>
+  <script>
+    const session = pl.create();
 
-        <div class="search-history">
-            <h3>🕓 История на търсенията:</h3>
-            <ul id="historyList"></ul>
-        </div>
-    </div>
+    // База знания за превозни средства и правила
+    const knowledge = `
+      vehicle(car).
+      vehicle(motorcycle).
+      vehicle(bicycle).
+      vehicle(airplane).
+      vehicle(helicopter).
+      vehicle(boat).
+      vehicle(submarine).
+      vehicle(train).
+      vehicle(truck).
+      vehicle(tank).
 
-    <script>
-        const people = [
-            { id: 1, name: "Иван Иванов", age: 30, city: "София" },
-            { id: 2, name: "Мария Петрова", age: 25, city: "Пловдив" },
-            { id: 3, name: "Георги Георгиев", age: 40, city: "Варна" },
-            { id: 4, name: "Анна Димитрова", age: 35, city: "Бургас" },
-            { id: 5, name: "Петър Василев", age: 28, city: "Русе" },
-            { id: 6, name: "Елена Николова", age: 22, city: "Стара Загора" },
-            { id: 7, name: "Димитър Христов", age: 45, city: "Плевен" },
-            { id: 8, name: "Виктория Стефанова", age: 29, city: "Шумен" },
-            { id: 9, name: "Росен Костов", age: 50, city: "София" },
-            { id: 10, name: "Николай Петров", age: 33, city: "Велико Търново" }
-        ];
+      % Категории
+      car(car).
+      car(motorcycle).
+      car(truck).
 
-        let searchHistory = [];
+      fast(car).
+      fast(motorcycle).
+      fast(airplane).
+      fast(helicopter).
+      fast(tank).
 
-        function displayHistory() {
-            const historyList = document.getElementById("historyList");
-            historyList.innerHTML = "";
-            searchHistory.slice().reverse().forEach((search, index) => {
-                const li = document.createElement("li");
-                li.textContent = `#${search.id} - ${search.name}, ${search.city}`;
-                historyList.appendChild(li);
-            });
+      aircraft(airplane).
+      aircraft(helicopter).
+
+      watercraft(boat).
+      watercraft(submarine).
+
+      land_vehicle(car).
+      land_vehicle(motorcycle).
+      land_vehicle(bicycle).
+      land_vehicle(train).
+      land_vehicle(truck).
+      land_vehicle(tank).
+
+      % Правила
+      is_car(X) :- car(X).
+      is_fast(X) :- fast(X).
+      is_aircraft(X) :- aircraft(X).
+      is_watercraft(X) :- watercraft(X).
+      is_land_vehicle(X) :- land_vehicle(X).
+    `;
+
+    session.consult(knowledge);
+
+    const vehicleAnimations = {
+      car: '<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHdjb3JrOGtmZGFlcHFhaWk3YnR3aXJqeGh3NnhpZmVzOXFpeGg3ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ov9jWu7BuHufyLs7m/giphy.gif" alt="Кола анимация" class="vehicle-gif" />',
+      motorcycle: '<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExano0MWs4eWhkMGk4MmI5NThrazE1YjdmMzhueDYwYnd4ZXUxYjB6bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/foLjE3DzgQApy/giphy.gif" alt="Мотоциклет анимация" class="vehicle-gif" />',
+      bicycle: '<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnpodzdmZ29lZmx3NXpleGZwOHZxdDRsYjRlemJwdjk1aGU5dThpbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT0GqrJNbZkRcr2Jgc/giphy.gif" alt="Велосипед анимация" class="vehicle-gif" />',
+      airplane: '<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHdxanl6ZXp6dWU0bG9oZGptZ3lzNHlycGplMWQza3h1aTIzaDM0bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vucm71oxBnJSLyEvZ1/giphy.gif" alt="Самолет анимация" class="vehicle-gif" />',
+      helicopter: '<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2lrbWgzN3B6c3Q2cGY2aHdvbnpiNmZ3cXZsdnB0aDU1NXpnZjJreCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/f1ohcPEHABwWY/giphy.gif" alt="Хеликоптер анимация" class="vehicle-gif" />',
+      boat: '<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExemxkN3Nrdzd6anJnbWVnc3E4ZnQyZ3hwaXhoYXIzOHRyeXNsbzEwYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qhoABJOROS9kQ/giphy.gif" alt="Лодка анимация" class="vehicle-gif" />',
+      submarine: '<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDN0ZjJmMnFmdnE3cHU1OXpxeWNuYmJ0OHRpdHZteDY0dXVsYnZiNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dNhCpFWksNtbMLsFpX/giphy.gif" alt="Подводница анимация" class="vehicle-gif" />',
+      train: '<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmxqOGV1eXlybG9rdGJvMzN3dmZobGwxa3phbnl1bmJhY29odmMwNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8F3bK4aq1tCo0TLkf7/giphy.gif" alt="Влак анимация" class="vehicle-gif" />',
+      truck: '<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmt5YXAwdWdpaHN4aHZidWp6eTBuamx1d21rY3VreGtrNXYzdGp3diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/o0X6kBVVJ94blpwtta/giphy.gif" alt="Камион анимация" class="vehicle-gif" />',
+      tank: '<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjBjaXNpaXNheThzeGExamV0enhycTkwcTVrNnd3OWR6MnZkOHd0MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OBhmTCuOXMAx2/giphy.gif" alt="Танк анимация" class="vehicle-gif" />'
+    };
+
+    function runProlog() {
+      const input = document.getElementById("prolog-input").value.trim();
+      const resultDiv = document.getElementById("result");
+      const animDiv = document.getElementById("vehicle-animation");
+
+      resultDiv.innerHTML = "";
+      animDiv.innerHTML = "";
+
+      if (!input) {
+        resultDiv.innerHTML = "<p>Моля, въведете Prolog заявка.</p>";
+        return;
+      }
+
+      try {
+        session.query(input);
+      } catch (e) {
+        resultDiv.innerHTML = `<p>Грешка в заявката: ${e}</p>`;
+        return;
+      }
+
+      let foundResult = false;
+      session.answers(answer => {
+        if (answer === false) {
+          if (!foundResult) {
+            resultDiv.innerHTML = "<p>Няма резултати за тази заявка.</p>";
+          } else {
+            resultDiv.innerHTML += "<p>Няма повече резултати.</p>";
+          }
+          return;
         }
 
-        function searchPersonById() {
-            const id = Number(document.getElementById("personId").value);
-            const result = document.getElementById("result");
+        foundResult = true;
+        const answerStr = pl.format_answer(answer);
+        resultDiv.innerHTML += `<p>${answerStr}</p>`;
 
-            if (!id || id < 1) {
-                result.textContent = "⚠️ Моля, въведи валидно ID!";
-                result.classList.add("error");
-                return;
-            }
-
-            const person = people.find(p => p.id === id);
-            if (person) {
-                result.textContent = `🧾 ID: ${person.id}\n👤 Име: ${person.name}\n🎂 Възраст: ${person.age}\n📍 Град: ${person.city}`;
-                result.classList.remove("error");
-                searchHistory.push(person);
-                displayHistory();
-            } else {
-                result.textContent = "❌ Няма човек с това ID.";
-                result.classList.add("error");
-            }
+        // Опит за намиране на превозно средство
+        const match = answerStr.match(/X = (\w+)/);
+        if (match) {
+          const vehicle = match[1];
+          if (vehicleAnimations[vehicle]) {
+            animDiv.innerHTML = vehicleAnimations[vehicle];
+          } else {
+            animDiv.innerHTML = "<p>Няма GIF за това превозно средство.</p>";
+          }
         }
+      });
+    }
+  </script>
 
-        function searchPersonByName() {
-            const name = document.getElementById("personName").value.trim().toLowerCase();
-            const result = document.getElementById("result");
-
-            if (!name) {
-                result.textContent = "⚠️ Моля, въведи име!";
-                result.classList.add("error");
-                return;
-            }
-
-            const person = people.find(p => p.name.toLowerCase() === name);
-            if (person) {
-                result.textContent = `🧾 ID: ${person.id}\n👤 Име: ${person.name}\n🎂 Възраст: ${person.age}\n📍 Град: ${person.city}`;
-                result.classList.remove("error");
-                searchHistory.push(person);
-                displayHistory();
-            } else {
-                result.textContent = "❌ Няма човек с това име.";
-                result.classList.add("error");
-            }
-        }
-
-        function clearInput() {
-            document.getElementById("personId").value = '';
-            document.getElementById("personName").value = '';
-            document.getElementById("result").textContent = '';
-        }
-    </script>
 </body>
 </html>
